@@ -164,5 +164,21 @@ public class DonationRequest {
 		this.imageUrl = imageUrl;
 	}
 	private String imageUrl;
+	
+	
+	
+    /**
+	 * @return the amountReceived
+	 */
+	public Double getAmountReceived() {
+		return amountReceived;
+	}
+	/**
+	 * @param amountReceived the amountReceived to set
+	 */
+	public void setAmountReceived(Double amountReceived) {
+		this.amountReceived = amountReceived;
+	}
+	private Double amountReceived;
     
 }

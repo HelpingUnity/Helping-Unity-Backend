@@ -54,6 +54,18 @@ public class JwtTokenProvider {
 
         return Long.parseLong(claims.getSubject());
     }
+    
+    
+    // Extracts the username (subject) from the JWT token.
+    public String getUsernameFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
+    }
+
 
     public boolean validateToken(String authToken) {
         try {
