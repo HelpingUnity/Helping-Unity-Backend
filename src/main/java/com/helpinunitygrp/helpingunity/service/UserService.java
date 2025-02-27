@@ -22,12 +22,12 @@ public class UserService {
         }
 
         token = token.substring(7); // Remove "Bearer "
-        String username = jwtTokenProvider.getUsernameFromToken(token);
-        if (username == null) {
+        long userId = Long.parseLong(jwtTokenProvider.getUsernameFromToken(token));
+        if (userId == 0) {
             throw new RuntimeException("Invalid Token - No Username Found");
         }
 
-        return userRepository.findByUsername(username)
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
     }
 }
