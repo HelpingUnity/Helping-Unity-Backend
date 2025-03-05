@@ -50,7 +50,7 @@ public class DonationRequestController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('RECIPIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
     public ResponseEntity<?> updateRequest(
             @PathVariable Long id,
             @RequestBody DonationRequest request,
@@ -59,7 +59,7 @@ public class DonationRequestController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('RECIPIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
     public ResponseEntity<?> deleteRequest(
             @PathVariable Long id,
             @AuthenticationPrincipal UserPrincipal userDetails) {
@@ -67,7 +67,7 @@ public class DonationRequestController {
     }
     
     @PutMapping("/{id}/comments")
-    @PreAuthorize("hasRole('TRUSTEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
     public ResponseEntity<?> updateTrusteeComment(
             @PathVariable("id") Long donationRequestId,
             @RequestParam Long trusteeId,
@@ -78,7 +78,7 @@ public class DonationRequestController {
     
     // Endpoint to delete trustee comment (only TRUSTEE role)
     @DeleteMapping("/{id}/comments")
-    @PreAuthorize("hasRole('TRUSTEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
     public ResponseEntity<?> deleteTrusteeComment(
             @PathVariable("id") Long donationRequestId,
             @RequestParam Long trusteeId) {
