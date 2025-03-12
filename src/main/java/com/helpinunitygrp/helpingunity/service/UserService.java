@@ -22,7 +22,7 @@ public class UserService {
         }
 
         token = token.substring(7); // Remove "Bearer "
-        long userId = Long.parseLong(jwtTokenProvider.getUsernameFromToken(token));
+        Long userId = Long.parseLong(jwtTokenProvider.getUsernameFromToken(token));
         if (userId == 0) {
             throw new RuntimeException("Invalid Token - No Username Found");
         }

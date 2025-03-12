@@ -61,6 +61,7 @@ public class DonationRequestService {
                 .body("You can only update your own requests");
         }
         
+        existingRequest.setTitle(request.getTitle());
         existingRequest.setDescription(request.getDescription());
         existingRequest.setDonationType(request.getDonationType());
         existingRequest.setAmountNeeded(request.getAmountNeeded());
@@ -80,6 +81,7 @@ public class DonationRequestService {
         donationRequestRepository.delete(request);
         return ResponseEntity.ok().build();
     }
+    
     
     
     // Trustee Comment

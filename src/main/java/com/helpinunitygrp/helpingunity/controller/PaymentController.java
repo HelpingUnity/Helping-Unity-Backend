@@ -68,7 +68,7 @@ public class PaymentController {
                     request.setStatus("FUNDED");
                     
                 }
-                request.setAmountNeeded(request.getAmountNeeded() - (amount / 100.0));
+                request.setAmountNeeded(request.getAmountNeeded() - newAmountReceived);
                 donationRequestRepository.save(request);
             }
 

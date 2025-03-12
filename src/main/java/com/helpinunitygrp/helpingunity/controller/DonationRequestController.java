@@ -32,7 +32,7 @@ public class DonationRequestController {
     private DonationRequestService donationRequestService;
 
     @PostMapping
-    @PreAuthorize("hasRole('RECIPIENT')")
+    @PreAuthorize("hasAnyRole('RECIPIENT', 'ADMIN')")
     public ResponseEntity<?> createRequest(
             @RequestBody DonationRequest request,
             @AuthenticationPrincipal UserPrincipal userDetails) {
@@ -50,7 +50,7 @@ public class DonationRequestController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('RECIPIENT', 'ADMIN')")
     public ResponseEntity<?> updateRequest(
             @PathVariable Long id,
             @RequestBody DonationRequest request,
@@ -59,7 +59,7 @@ public class DonationRequestController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('TRUSTEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('RECIPIENT', 'ADMIN')")
     public ResponseEntity<?> deleteRequest(
             @PathVariable Long id,
             @AuthenticationPrincipal UserPrincipal userDetails) {

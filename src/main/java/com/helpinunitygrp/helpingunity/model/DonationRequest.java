@@ -102,7 +102,15 @@ public class DonationRequest {
     @Enumerated(EnumType.STRING)
     private DonationType donationType;
 
-    private String description;
+    private String title;
+    public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	private String description;
     private String status;
     private LocalDateTime createdAt;
     private Double amountNeeded;

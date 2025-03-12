@@ -24,7 +24,7 @@ public class UserController {
 	        	System.out.println("Received Token: " + token);
 	        	// Remove "Bearer " prefix if present
 	            if (token != null && token.startsWith("Bearer ")) {
-	                //token = token.substring(7);
+//	                token = token.substring(7);
 	            }
 	            User user = userService.getUserFromToken(token);
 	            return ResponseEntity.ok(user);
