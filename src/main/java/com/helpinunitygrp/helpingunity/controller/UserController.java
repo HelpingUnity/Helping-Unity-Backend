@@ -6,8 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.helpinunitygrp.helpingunity.model.User;
-import com.helpinunitygrp.helpingunity.repository.Userrepository;
-import com.helpinunitygrp.helpingunity.security.JwtTokenProvider;
 import com.helpinunitygrp.helpingunity.service.UserService;
 
 @RestController
