@@ -50,9 +50,9 @@ public class SecurityConfig{
                 .requestMatchers("/api/user/me").authenticated() 
                 .requestMatchers("/api/payments/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/donor/**").hasRole("DONOR")
-                .requestMatchers("/api/recipient/**").hasRole("RECIPIENT")
-                .requestMatchers("/api/trustee/**").hasRole("TRUSTEE")
+                .requestMatchers("/api/donor/**").hasAnyRole("DONOR", "ADMIN")
+                .requestMatchers("/api/recipient/**").hasAnyRole("RECIPIENT", "ADMIN")
+                .requestMatchers("/api/trustee/**").hasAnyRole("TRUSTEE", "ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(

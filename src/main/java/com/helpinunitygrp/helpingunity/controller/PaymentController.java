@@ -40,10 +40,11 @@ public class PaymentController {
 
             // Validate that the donation request exists and calculate the remaining amount needed
             DonationRequest request = donationRequestRepository.findById(donationRequestId)
-                .orElseThrow(() -> new RuntimeException("Donation request not found"));
+                .orElseThrow(() -> new RuntimeException("Oops! No Donation requests found"));
 
             double amountReceived = (request.getAmountReceived() != null ? request.getAmountReceived() : 0);
-            double remainingAmount = request.getAmountNeeded() - amountReceived;
+            double remainingAmount = request.getAmountNeeded();
+//            double remainingAmount = request.getAmountNeeded() - amountReceived;
 
             if (amount / 100.0 > remainingAmount) {
                 return ResponseEntity.badRequest()
@@ -62,13 +63,15 @@ public class PaymentController {
 
             // If the charge is successful, update the donation request
             if (charge.getPaid() != null && charge.getPaid()) {
+            	// set amount received
                 double newAmountReceived = amountReceived + (amount / 100.0);
                 request.setAmountReceived(newAmountReceived);
                 if (newAmountReceived >= request.getAmountNeeded()) {
                     request.setStatus("FUNDED");
                     
                 }
-                request.setAmountNeeded(request.getAmountNeeded() - newAmountReceived);
+                // set amount needed
+                request.setAmountNeeded(request.getAmountNeeded() - (newAmountReceived - amountReceived));
                 donationRequestRepository.save(request);
             }
 

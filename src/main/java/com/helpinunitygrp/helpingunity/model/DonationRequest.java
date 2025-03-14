@@ -110,6 +110,8 @@ public class DonationRequest {
 		this.title = title;
 	}
 	
+    @Lob
+    @Column(name = "description", columnDefinition = "TEXT")
 	private String description;
     private String status;
     private LocalDateTime createdAt;
